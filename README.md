@@ -2,51 +2,38 @@
 
 **Repository:** https://github.com/kirobotdev/nexus
 
-```{=html}
 <p align="center">
-```
-`<strong>`{=html}A modular infrastructure monitoring and management
-platform built with Python.`</strong>`{=html}
-```{=html}
+  <strong>A modular infrastructure monitoring and management platform built with Python.</strong>
 </p>
-```
-```{=html}
-<p align="center">
-```
-Monitor your infrastructure, collect metrics, analyze logs, manage
-services, and react to incidents from one place.
-```{=html}
-</p>
-```
 
-------------------------------------------------------------------------
+<p align="center">
+  Monitor your infrastructure, collect metrics, analyze logs, manage services, and react to incidents from one place.
+</p>
+
+---
 
 ## Overview
 
-**NEXUS** is a large-scale Python project designed to become a complete
-monitoring and infrastructure management platform.
+**NEXUS** is a large-scale Python project designed to become a complete monitoring and infrastructure management platform.
 
-The project is built around a modular architecture so that new
-monitoring systems, agents, notification channels, integrations, and
-plugins can be added without rewriting the core.
+The project is built around a modular architecture so that new monitoring systems, agents, notification channels, integrations, and plugins can be added without rewriting the core.
 
-NEXUS is designed for homelabs, personal servers, development
-environments, and eventually larger infrastructures.
+NEXUS is designed for homelabs, personal servers, development environments, and eventually larger infrastructures.
 
 ### Main idea
 
-``` text
+```text
                          ┌──────────────────────┐
                          │        NEXUS         │
-                         │      CORE SERVER     │
+                         │      CORE SERVER      │
                          └──────────┬───────────┘
                                     │
               ┌─────────────────────┼─────────────────────┐
               │                     │                     │
               ▼                     ▼                     ▼
         ┌───────────┐         ┌───────────┐         ┌───────────┐
-        │  Linux    │         │  Windows  │         │  Docker   │
-        │   Agent   │         │   Agent   │         │  Agent    │
+        │   Linux    │         │  Windows  │         │  Docker   │
+        │   Agent    │         │   Agent   │         │   Agent   │
         └─────┬─────┘         └─────┬─────┘         └─────┬─────┘
               │                     │                     │
               └─────────────────────┼─────────────────────┘
@@ -55,18 +42,18 @@ environments, and eventually larger infrastructures.
                                     │
                    ┌────────────────┼────────────────┐
                    ▼                ▼                ▼
-              Database          Alerts           Dashboard
+              Database           Alerts           Dashboard
                    │                │                │
                    │                ▼                │
-                   │          Telegram/Discord      │
-                   │          Email/Webhooks        │
-                   │                                 │
-                   └───────────────┬─────────────────┘
+                   │          Telegram/Discord        │
+                   │           Email/Webhooks         │
+                   │                                   │
+                   └───────────────┬───────────────────┘
                                    ▼
                               NEXUS CLI / API
 ```
 
-------------------------------------------------------------------------
+---
 
 ## Features
 
@@ -74,23 +61,23 @@ environments, and eventually larger infrastructures.
 
 NEXUS aims to monitor:
 
--   CPU usage
--   RAM usage
--   GPU usage
--   Disk usage
--   Network traffic
--   Temperatures
--   Processes
--   Services
--   System uptime
--   Docker containers
--   Custom application metrics
+- CPU usage
+- RAM usage
+- GPU usage
+- Disk usage
+- Network traffic
+- Temperatures
+- Processes
+- Services
+- System uptime
+- Docker containers
+- Custom application metrics
 
 ### Alerting
 
 Create rules such as:
 
-``` text
+```text
 CPU > 90% for 60 seconds
         ↓
      WARNING
@@ -100,17 +87,17 @@ CPU > 90% for 60 seconds
 
 Possible notification channels:
 
--   Telegram
--   Discord
--   Email
--   Webhooks
--   Custom integrations
+- Telegram
+- Discord
+- Email
+- Webhooks
+- Custom integrations
 
 ### Logs
 
 NEXUS includes a dedicated log pipeline:
 
-``` text
+```text
 Log source
     ↓
 Collector
@@ -126,8 +113,7 @@ Storage
 Search
 ```
 
-The goal is to make it possible to search and analyze logs from multiple
-machines through one system.
+The goal is to make it possible to search and analyze logs from multiple machines through one system.
 
 ### Agents
 
@@ -135,7 +121,7 @@ A lightweight agent can run on monitored machines.
 
 The agent collects system information and sends it to the NEXUS server.
 
-``` text
+```text
 nexus-agent
      │
      ├── System metrics
@@ -152,7 +138,7 @@ NEXUS is designed to support third-party or custom plugins.
 
 Example:
 
-``` text
+```text
 plugins/
 ├── nginx/
 ├── postgres/
@@ -164,20 +150,20 @@ plugins/
 
 A plugin could provide its own:
 
--   Collectors
--   Metrics
--   Alerts
--   API routes
--   Commands
--   Dashboard components
+- Collectors
+- Metrics
+- Alerts
+- API routes
+- Commands
+- Dashboard components
 
-------------------------------------------------------------------------
+---
 
 ## Architecture
 
 The project is split into independent components.
 
-``` text
+```text
 NEXUS
 │
 ├── Core
@@ -237,13 +223,13 @@ NEXUS
     └── Stress
 ```
 
-------------------------------------------------------------------------
+---
 
 ## Example commands
 
 The final CLI is planned to provide commands similar to:
 
-``` bash
+```bash
 nexus host list
 nexus host info server01
 
@@ -263,7 +249,7 @@ nexus plugin list
 nexus plugin install docker
 ```
 
-------------------------------------------------------------------------
+---
 
 ## Technology
 
@@ -271,25 +257,25 @@ The core project is written primarily in **Python**.
 
 Planned technologies include:
 
--   Python
--   SQLite / PostgreSQL
--   REST API
--   WebSockets
--   Async programming
--   Linux system APIs
--   Windows system APIs
--   Docker APIs
--   C extensions for selected low-level components
+- Python
+- SQLite / PostgreSQL
+- REST API
+- WebSockets
+- Async programming
+- Linux system APIs
+- Windows system APIs
+- Docker APIs
+- C extensions for selected low-level components
 
 The exact technologies may evolve as the project grows.
 
-------------------------------------------------------------------------
+---
 
 ## Native components
 
 Performance-critical or low-level functionality may be implemented in C.
 
-``` text
+```text
 Python
    │
    ├── Application logic
@@ -307,168 +293,165 @@ Python
           └── Performance-critical operations
 ```
 
-Python remains the main language while C is used where lower-level
-access or performance makes sense.
+Python remains the main language while C is used where lower-level access or performance makes sense.
 
-------------------------------------------------------------------------
+---
 
 ## Development
 
 Clone the repository:
 
-``` bash
-git clone <repository-url>
+```bash
+git clone https://github.com/kirobotdev/nexus
 cd nexus
 ```
 
 Create a virtual environment:
 
-``` bash
+```bash
 python -m venv .venv
 ```
 
-Activate it on Linux:
+Activate it on Linux/macOS:
 
-``` bash
+```bash
 source .venv/bin/activate
 ```
 
 Activate it on Windows:
 
-``` powershell
+```powershell
 .venv\Scripts\Activate.ps1
 ```
 
 Install development dependencies:
 
-``` bash
+```bash
 pip install -e ".[dev]"
 ```
 
 Run the project:
 
-``` bash
+```bash
 python -m nexus
 ```
 
 Run tests:
 
-``` bash
+```bash
 pytest
 ```
 
-------------------------------------------------------------------------
+---
 
 ## Project goals
 
 NEXUS is intentionally designed as a long-term project.
 
-The objective is not to create one huge Python script, but to build a
-real software ecosystem with:
+The objective is not to create one huge Python script, but to build a real software ecosystem with:
 
--   A maintainable architecture
--   Clear module boundaries
--   Extensive testing
--   A stable API
--   A powerful CLI
--   Multiple agents
--   A plugin ecosystem
--   Monitoring and alerting
--   Centralized logging
--   Database storage
--   Security controls
--   Documentation
--   Performance testing
+- A maintainable architecture
+- Clear module boundaries
+- Extensive testing
+- A stable API
+- A powerful CLI
+- Multiple agents
+- A plugin ecosystem
+- Monitoring and alerting
+- Centralized logging
+- Database storage
+- Security controls
+- Documentation
+- Performance testing
 
-The codebase is expected to grow substantially over time as new
-components are implemented.
+The codebase is expected to grow substantially over time as new components are implemented.
 
-------------------------------------------------------------------------
+---
 
 ## Roadmap
 
-### Phase 1 --- Foundation
+### Phase 1 — Foundation
 
--   [ ] Project architecture
--   [ ] Configuration system
--   [ ] Core logging
--   [ ] Exception system
--   [ ] Event system
--   [ ] Task scheduler
--   [ ] CLI foundation
+- [ ] Project architecture
+- [ ] Configuration system
+- [ ] Core logging
+- [ ] Exception system
+- [ ] Event system
+- [ ] Task scheduler
+- [ ] CLI foundation
 
-### Phase 2 --- Monitoring
+### Phase 2 — Monitoring
 
--   [ ] CPU collector
--   [ ] Memory collector
--   [ ] Disk collector
--   [ ] Network collector
--   [ ] Process collector
--   [ ] Service collector
--   [ ] GPU collector
--   [ ] Temperature collector
+- [ ] CPU collector
+- [ ] Memory collector
+- [ ] Disk collector
+- [ ] Network collector
+- [ ] Process collector
+- [ ] Service collector
+- [ ] GPU collector
+- [ ] Temperature collector
 
-### Phase 3 --- Agent
+### Phase 3 — Agent
 
--   [ ] Linux agent
--   [ ] Windows agent
--   [ ] Agent authentication
--   [ ] Secure communication
--   [ ] Agent registration
--   [ ] Remote configuration
+- [ ] Linux agent
+- [ ] Windows agent
+- [ ] Agent authentication
+- [ ] Secure communication
+- [ ] Agent registration
+- [ ] Remote configuration
 
-### Phase 4 --- Server
+### Phase 4 — Server
 
--   [ ] API
--   [ ] Database
--   [ ] Metrics storage
--   [ ] Host management
--   [ ] WebSocket support
--   [ ] Authentication
--   [ ] Permissions
+- [ ] API
+- [ ] Database
+- [ ] Metrics storage
+- [ ] Host management
+- [ ] WebSocket support
+- [ ] Authentication
+- [ ] Permissions
 
-### Phase 5 --- Alerts
+### Phase 5 — Alerts
 
--   [ ] Rule engine
--   [ ] Conditions
--   [ ] Alert states
--   [ ] Incidents
--   [ ] Notification system
--   [ ] Telegram
--   [ ] Discord
--   [ ] Email
--   [ ] Webhooks
+- [ ] Rule engine
+- [ ] Conditions
+- [ ] Alert states
+- [ ] Incidents
+- [ ] Notification system
+- [ ] Telegram
+- [ ] Discord
+- [ ] Email
+- [ ] Webhooks
 
-### Phase 6 --- Logs
+### Phase 6 — Logs
 
--   [ ] Log collectors
--   [ ] Parsing
--   [ ] Normalization
--   [ ] Indexing
--   [ ] Search
--   [ ] Retention
--   [ ] Log-based alerts
+- [ ] Log collectors
+- [ ] Parsing
+- [ ] Normalization
+- [ ] Indexing
+- [ ] Search
+- [ ] Retention
+- [ ] Log-based alerts
 
-### Phase 7 --- Plugins
+### Phase 7 — Plugins
 
--   [ ] Plugin API
--   [ ] Plugin loader
--   [ ] Plugin permissions
--   [ ] Plugin configuration
--   [ ] Plugin lifecycle
--   [ ] Plugin documentation
+- [ ] Plugin API
+- [ ] Plugin loader
+- [ ] Plugin permissions
+- [ ] Plugin configuration
+- [ ] Plugin lifecycle
+- [ ] Plugin documentation
 
-### Phase 8 --- Advanced systems
+### Phase 8 — Advanced systems
 
--   [ ] Docker integration
--   [ ] Backup management
--   [ ] Security monitoring
--   [ ] Anomaly detection
--   [ ] Performance profiling
--   [ ] C extensions
--   [ ] Advanced dashboard
+- [ ] Docker integration
+- [ ] Backup management
+- [ ] Security monitoring
+- [ ] Anomaly detection
+- [ ] Performance profiling
+- [ ] C extensions
+- [ ] Advanced dashboard
 
-------------------------------------------------------------------------
+---
 
 ## Security
 
@@ -476,51 +459,42 @@ Security is an important part of the project.
 
 NEXUS should eventually include:
 
--   Authentication
--   Role-based permissions
--   API keys
--   Agent authentication
--   Encrypted communication
--   Audit logs
--   Secure secret storage
--   Rate limiting
--   Plugin isolation
--   Input validation
+- Authentication
+- Role-based permissions
+- API keys
+- Agent authentication
+- Encrypted communication
+- Audit logs
+- Secure secret storage
+- Rate limiting
+- Plugin isolation
+- Input validation
 
-Security-sensitive components will be designed and reviewed
-independently from the rest of the application.
+Security-sensitive components will be designed and reviewed independently from the rest of the application.
 
-------------------------------------------------------------------------
+---
 
 ## Status
 
 > 🚧 **NEXUS is an active development project.**
 
-The architecture and features may change significantly during
-development.
+The architecture and features may change significantly during development.
 
-------------------------------------------------------------------------
+---
 
 ## License
 
 NEXUS is released under the **NEXUS Non-Commercial License v1.0**.
 
-You may use, modify, and distribute the project for personal, educational,
-and non-commercial purposes.
+You may use, modify, and distribute the project for personal, educational, and non-commercial purposes.
 
-Commercial use, paid services, SaaS deployments, resale, or redistribution
-as a competing product requires prior written permission from the copyright
-holder.
+Commercial use, paid services, SaaS deployments, resale, or redistribution as a competing product requires prior written permission from the copyright holder.
 
 See [`LICENSE`](./LICENSE) for the complete license terms.
 
-------------------------------------------------------------------------
+---
 
-```{=html}
 <p align="center">
-```
-`<strong>`{=html}NEXUS`</strong>`{=html}`<br>`{=html} Connect. Monitor.
-Understand.
-```{=html}
+  <strong>NEXUS</strong><br>
+  Connect. Monitor. Understand.
 </p>
-```
