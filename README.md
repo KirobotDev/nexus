@@ -22,9 +22,28 @@ NEXUS is designed for homelabs, personal servers, development environments, and 
 
 ### Main idea
 
-<p align="center">
-  <img src="assets/architecture.svg" alt="NEXUS architecture diagram" width="720">
-</p>
+```mermaid
+flowchart TD
+    core([NEXUS CORE SERVER])
+
+    core --> linux[Linux Agent]
+    core --> windows[Windows Agent]
+    core --> docker[Docker Agent]
+
+    linux --> ml[Metrics / Logs]
+    windows --> ml
+    docker --> ml
+
+    ml --> db[(Database)]
+    ml --> alerts{Alerts}
+    ml --> dash[Dashboard]
+
+    alerts --> notif[Telegram · Discord · Email · Webhooks]
+
+    db --> cli([NEXUS CLI / API])
+    notif --> cli
+    dash --> cli
+```
 
 ---
 
