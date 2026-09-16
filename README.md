@@ -22,36 +22,9 @@ NEXUS is designed for homelabs, personal servers, development environments, and 
 
 ### Main idea
 
-```text
-                         ┌──────────────────────┐
-                         │        NEXUS         │
-                         │      CORE SERVER      │
-                         └──────────┬───────────┘
-                                    │
-              ┌─────────────────────┼─────────────────────┐
-              │                     │                     │
-              ▼                     ▼                     ▼
-        ┌───────────┐         ┌───────────┐         ┌───────────┐
-        │   Linux    │         │  Windows  │         │  Docker   │
-        │   Agent    │         │   Agent   │         │   Agent   │
-        └─────┬─────┘         └─────┬─────┘         └─────┬─────┘
-              │                     │                     │
-              └─────────────────────┼─────────────────────┘
-                                    ▼
-                              Metrics / Logs
-                                    │
-                   ┌────────────────┼────────────────┐
-                   ▼                ▼                ▼
-              Database           Alerts           Dashboard
-                   │                │                │
-                   │                ▼                │
-                   │          Telegram/Discord        │
-                   │           Email/Webhooks         │
-                   │                                   │
-                   └───────────────┬───────────────────┘
-                                   ▼
-                              NEXUS CLI / API
-```
+<p align="center">
+  <img src="assets/architecture.svg" alt="NEXUS architecture diagram" width="720">
+</p>
 
 ---
 
@@ -163,65 +136,96 @@ A plugin could provide its own:
 
 The project is split into independent components.
 
-```text
-NEXUS
-│
-├── Core
-│   ├── Configuration
-│   ├── Events
-│   ├── Scheduler
-│   ├── Logging
-│   ├── Exceptions
-│   └── Plugin system
-│
-├── Agents
-│   ├── Linux
-│   ├── Windows
-│   └── Docker
-│
-├── Monitoring
-│   ├── CPU
-│   ├── Memory
-│   ├── Disk
-│   ├── GPU
-│   ├── Network
-│   ├── Processes
-│   └── Services
-│
-├── Alerts
-│   ├── Rules
-│   ├── Engine
-│   ├── Incidents
-│   └── Notifications
-│
-├── Logs
-│   ├── Collection
-│   ├── Parsing
-│   ├── Indexing
-│   └── Search
-│
-├── Database
-│   ├── Models
-│   ├── Repositories
-│   ├── Queries
-│   └── Migrations
-│
-├── API
-│   ├── REST
-│   ├── WebSocket
-│   ├── Authentication
-│   └── Middleware
-│
-├── CLI
-│   └── Commands
-│
-└── Tests
-    ├── Unit
-    ├── Integration
-    ├── Functional
-    ├── Security
-    └── Stress
+```mermaid
+flowchart LR
+    NEXUS((NEXUS))
+
+    NEXUS --> Core
+    NEXUS --> Agents
+    NEXUS --> Monitoring
+    NEXUS --> Alerts
+    NEXUS --> Logs
+    NEXUS --> DB
+    NEXUS --> API
+    NEXUS --> CLI
+    NEXUS --> Tests
+
+    subgraph Core["Core"]
+        direction TB
+        c1[Configuration]
+        c2[Events]
+        c3[Scheduler]
+        c4[Logging]
+        c5[Exceptions]
+        c6[Plugin system]
+    end
+
+    subgraph Agents["Agents"]
+        direction TB
+        a1[Linux]
+        a2[Windows]
+        a3[Docker]
+    end
+
+    subgraph Monitoring["Monitoring"]
+        direction TB
+        m1[CPU]
+        m2[Memory]
+        m3[Disk]
+        m4[GPU]
+        m5[Network]
+        m6[Processes]
+        m7[Services]
+    end
+
+    subgraph Alerts["Alerts"]
+        direction TB
+        al1[Rules]
+        al2[Engine]
+        al3[Incidents]
+        al4[Notifications]
+    end
+
+    subgraph Logs["Logs"]
+        direction TB
+        lg1[Collection]
+        lg2[Parsing]
+        lg3[Indexing]
+        lg4[Search]
+    end
+
+    subgraph DB["Database"]
+        direction TB
+        d1[Models]
+        d2[Repositories]
+        d3[Queries]
+        d4[Migrations]
+    end
+
+    subgraph API["API"]
+        direction TB
+        ap1[REST]
+        ap2[WebSocket]
+        ap3[Authentication]
+        ap4[Middleware]
+    end
+
+    subgraph CLI["CLI"]
+        direction TB
+        cl1[Commands]
+    end
+
+    subgraph Tests["Tests"]
+        direction TB
+        t1[Unit]
+        t2[Integration]
+        t3[Functional]
+        t4[Security]
+        t5[Stress]
+    end
 ```
+
+> Diagramme Mermaid natif : cliquable, zoomable et déplaçable directement sur GitHub (bouton d'agrandissement en haut à droite du rendu).
 
 ---
 
